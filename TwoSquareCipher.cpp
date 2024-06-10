@@ -2,6 +2,9 @@
 
 void ConvertToASCII(string s, vector<int>& WordtoNum)
 {
+    for (char &c : s) { 
+        c = std::tolower(c); 
+    }
     for (int i = 0; i < s.length(); i++)
         if (static_cast<int>(s[i]) != 'q') {
             WordtoNum.emplace_back(static_cast<int>(s[i]));
@@ -10,6 +13,9 @@ void ConvertToASCII(string s, vector<int>& WordtoNum)
 
 void ConvertToASCII_With_Class(string s, vector<Coordinates>& Result)
 {
+    for (char &c : s) { 
+        c = std::tolower(c); 
+    }
     for (int i = 0; i < s.length(); i++)
         if (static_cast<int>(s[i]) != 'q') {
             Result[i].ASCIIcode = static_cast<int>(s[i]);
@@ -113,9 +119,6 @@ string Encode(string KeyWord1, string KeyWord2, string Message) {
 }
 
 string Decode(string KeyWord1, string KeyWord2, string EncodedMessage) {
-    // Decoding is essentially the reverse of encoding in the Two-square cipher.
-    // Here, we assume that the decoding process is similar to the encoding process
-    // due to the nature of the Two-square cipher. Any additional adjustments should
-    // be made according to specific implementation details.
+    
     return Encode(KeyWord1, KeyWord2, EncodedMessage);
 }
