@@ -118,6 +118,60 @@ string Encode(string KeyWord1, string KeyWord2, string Message) {
     return encodedMessage;
 }
 
+vector<int> stringToAscii (const string& str) {
+    vector<int> asciiValues;
+    for (char c : str) {
+        asciiValues.push_back(static_cast<int>(c));
+    }
+    return asciiValues;
+}
+
+string asciiToString(vector<int>& asciiValues) {
+    string str;
+    for (int val : asciiValues) {
+        str.push_back(static_cast<char>(val));
+    }
+    return str;
+}
+
+bool asciiCompare(string& a, string& b) {
+    return stringToAscii(a) < stringToAscii(b);
+}
+
+int binarySearch(const vector<string>& sortedDict, string& input) {
+    int low = 0;
+    int high = sortedDict.size() - 1;
+    vector<int> inputAscii = stringToAscii(input);
+
+    while (low <= high) {
+        int mid = (low + high) / 2;
+        vector<int> midAscii = stringToAscii(sortedDict[mid]);
+
+        if (midAscii < inputAscii) {
+            low = mid + 1;
+        } else {
+            high = mid - 1;
+        }
+    }
+
+    return low;
+}
+
+
+string autocomplete(string& input,vector<string>& dictionary) {
+    vector<string> sortedDict = dictionary;
+    sort(sortedDict.begin(), sortedDict.end(), asciiCompare);
+
+    int index = binarySearch(sortedDict, input);
+
+    if (index < sortedDict.size() && sortedDict[index].find(input) == 0) {
+        return sortedDict[index];
+    } else {
+        return "No suggestion found";
+    }
+}
+
+
 string Decode(string KeyWord1, string KeyWord2, string EncodedMessage) {
     
     return Encode(KeyWord1, KeyWord2, EncodedMessage);

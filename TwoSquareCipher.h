@@ -24,5 +24,10 @@ void BubbleSort_Firstlayer(vector<vector<int>>& A);
 void Alpahbet_To_AlphabetMatrix(vector<vector<vector<int>>>& AlphabetMatrix, vector<vector<int>>& Alphabet1, vector<vector<int>>& Alphabet2);
 string Encode(string KeyWord1, string KeyWord2, string Message);
 string Decode(string KeyWord1, string KeyWord2, string EncodedMessage);
+vector<int> stringToAscii (const string& str) ;
+string asciiToString(vector<int>& asciiValues);
+bool asciiCompare(string& a, string& b);
+int binarySearch(const vector<string>& sortedDict, string& input);
+string autocomplete(string& input,vector<string>& dictionary);
 
 #endif // TWOSQUARECIPHER_H
